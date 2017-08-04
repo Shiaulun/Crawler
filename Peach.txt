@@ -6,7 +6,7 @@ from random import randint
 
 today = date.today().strftime("%Y/%m/%d")
 
-# 8 ¤ë
+# 8 æœˆ
 k = 0
 for i in range(1,32):
     
@@ -25,15 +25,17 @@ for i in range(1,32):
         'child_count':'0',
         'infant_count':'0',
         'r':'static_search'}
-#         print(payload)
+
         url = 'https://booking.flypeach.com/tw'
         
         res = requests.post(url,headers=headers,data=payload)
+        res.encoding = 'utf8'
         soup = BeautifulSoup(res.text,'lxml')
+        
         fname = arrive_day.strftime("%m-%d") + "~" + return_day.strftime("%m-%d")
         
-        f = open(fname, 'w')
-        f.write(str(soup.encode('utf-8')))
+        f = open("C:\\Users\\Shiaulun\\Desktop\\Peach\\{}".format(fname),'w')
+        f.write(str(soup.encode('utf8')))
         f.close()
         time.sleep(randint(5,10))
         k += 1
